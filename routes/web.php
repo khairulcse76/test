@@ -11,6 +11,16 @@ Route::get('/home', 'HomeController@index');
 
 Route::group([
     'prefix' => Config("authorization.route-prefix"),
+    'middleware' =>  ['authorize', 'auth']
+],
+    function() {
+        Route::get('/sayhello', 'sayHelloController@index');
+    });
+
+
+
+Route::group([
+    'prefix' => Config("authorization.route-prefix"),
     'middleware' => ['web', 'auth']],
     function() {
         Route::group(['middleware' => Config("authorization.middleware")], function() {
@@ -22,7 +32,6 @@ Route::group([
             Route::post('/permissions', 'PermissionsController@update');
             Route::post('/permissions/getSelectedRoutes', 'PermissionsController@getSelectedRoutes');
         });
-
         Route::get('/', function () {
             return view('vendor.authorize.welcome');
         });
