@@ -138,6 +138,10 @@ return [
 
     'providers' => [
 
+        //customs Other's Providers
+
+        Collective\Html\HtmlServiceProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -191,6 +195,12 @@ return [
     */
 
     'aliases' => [
+
+        //Customise aliases
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+
+        //main aliases
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
