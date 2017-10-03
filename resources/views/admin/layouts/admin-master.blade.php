@@ -332,14 +332,14 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="active treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Custom pages</span>
+                        <i class="fa fa-dashboard"></i> <span>Product</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="index.html"><i class="fa fa-circle-o"></i> Custom page 1</a></li>
-                        <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Custom page 1</a></li>
+                        <li><a href="{{ url('authorize/insert-product') }}"><i class="fa fa-circle-o"></i> Product Insert</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Product View</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

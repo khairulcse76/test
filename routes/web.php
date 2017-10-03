@@ -17,7 +17,7 @@ Route::group([
         Route::get('/sayhello', 'sayHelloController@index');
         // আমরা যে route গুলো control করতে চাই সেগুলো এখানে লিখব।
 
-        Route::get('/super-admin', 'superAdminController@login');
+        Route::get('/insert-product', 'ProductController@create');
     });
 
 
