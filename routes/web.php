@@ -18,6 +18,11 @@ Route::group([
         // আমরা যে route গুলো control করতে চাই সেগুলো এখানে লিখব।
 
         Route::get('/insert-product', 'ProductController@create');
+        Route::get('/insert-brand', 'BrandController@create');
+
+        //Category Routes
+        Route::get('/insert-category', 'CategoryController@create');
+        Route::post('/category-store', 'CategoryController@store');
     });
 
 

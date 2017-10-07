@@ -326,14 +326,39 @@
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Product</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('authorize/insert-product') }}"><i class="fa fa-circle-o"></i> Product Insert</a></li>
                         <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Product View</a></li>
                     </ul>
                 </li>
+                <li class="active treeview menu-open">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Brand</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('authorize/insert-brand') }}"><i class="fa fa-circle-o"></i>Insert Brand</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Brand Manage</a></li>
+                    </ul>
+                </li>
+                <li class="active treeview menu-open">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Category</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('authorize/insert-category') }}"><i class="fa fa-circle-o"></i>Insert Category</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Category Manage</a></li>
+                    </ul>
+                </li>
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
@@ -500,8 +525,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Dashboard
-                <small>Version 2.0</small>
+                @yield('pageHeader')
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
