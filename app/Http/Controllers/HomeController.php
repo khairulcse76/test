@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+
+//     $config_items = User::all ();
+
+        $test=auth()->user()->role_id;
+        if ($test==NULL){
+            return view('welcome');
+        }else{
+            return view('admin.home');
+        }
+
+
     }
 }
