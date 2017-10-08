@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,31 +25,32 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.insert-category');
+        $Categories = Category::get();
+//        print_r($Categories); exit();
+        return view('admin.pages.insert-sub-category', compact('Categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Responsess
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
-            'categoryName' => 'required',
+            'subCategoryName' => 'required|min:3',
+            'category_id' => 'required',
         ]);
 
-        $item = new Category;
+        $item = new SubCategory;
+        $item->subCategoryName = $request->subCategoryName;
+        $item->category_id=$request->category_id;
 
-        $item->categoryName = $request->categoryName;
-        $item->user_id=auth()->user()->id;
         $success=$item->save();
         if ($success){
-            session()->flash('massage', 'Category Successfully Save....!');
+            session()->flash('massage', 'Sub-Category Successfully Save');
         }
-
         return back();
     }
 

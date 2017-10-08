@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\brand;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -23,26 +25,27 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.insert-brands');
+        $subCategories=SubCategory::get();
+        return view('admin.pages.insert-brands', compact('subCategories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'BrandName' => 'required',
+            'subCategoryId' => 'required',
+        ]);
+        $item = new brand;
+        $item->BrandName = $request->BrandName;
+        $item->subCategoryId=$request->subCategoryId;
+
+        $success=$item->save();
+        if ($success){
+            session()->flash('massage', 'Brand Successfully Save.....');
+        }
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

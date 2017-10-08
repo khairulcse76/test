@@ -6,18 +6,19 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 {{--displaying error message--}}
-                @include('admin.massages.errors')
-                {{--@if($subCategories->isEmpty())--}}
-                {{--<div class="alert alert-warning" role="alert">--}}
-                    {{--<strong>Warning!: Please Create a Sub Category First</strong>--}}
-                {{--</div>--}}
-                {{--@endif--}}
+{{--                @include('admin.massages.errors')--}}
+                @if(session('massage'))
+                    <h3 class="alert alert-success text-center">{{ session('massage') }}</h3>
+                @endif
                 <form action="{{url('/authorize/category-store')}}" method="post">
                     {{csrf_field()}}
 
                     <div class="form-group">
-                        <label for="brName">Category Name</label>
-                        <input required type="text" name="categoryName" id="categoryName" class="form-control" placeholder="Enter Category Name" >
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" name="categoryName" id="categoryName" class="form-control" placeholder="Enter Category Name" >
+                        @if($errors->has('categoryName'))
+                            <span style="color: red;">{{ $errors->first('categoryName') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
