@@ -21,6 +21,7 @@
                         <label for="subCategoryId">Sub Category</label>
                         <select class="form-control" name="subCategoryId" id="subCategoryId">
                             <option value="">select Sub category</option>
+                            <option value="0">সব ক্যাটাগরি</option>
                             @foreach($subCategories as $subCategory)
                                 <option value="{{ $subCategory->id }}">{{ $subCategory->subCategoryName }}</option>
                             @endforeach

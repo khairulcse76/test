@@ -1,3 +1,9 @@
+<?php
+use App\Category;
+use App\SubCategory;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,14 +170,19 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <h2>Category</h2>
+                    <h2>ক্যাটাগরি</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                        <?php
+                         $Categories= Category::all();
+
+                         foreach ($Categories as $category){
+                        ?>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                                         <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Sportswear
+                                        <?php  echo $category->categoryName ?>
                                     </a>
                                 </h4>
                             </div>
@@ -187,6 +198,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                            }
+                        ?>
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -270,8 +286,7 @@
                                 <h4 class="panel-title"><a href="#">Shoes</a></h4>
                             </div>
                         </div>
-                    </div><!--/category-products-->
-
+                    </div>
                     <div class="brands_products"><!--brands_products-->
                         <h2>Brands</h2>
                         <div class="brands-name">
