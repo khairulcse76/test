@@ -19,6 +19,7 @@
                         <label for="category_id">Category Name</label>
                         <select class="form-control" name="category_id" id="category_id" selected="{{ old('category_id')}}">
                             <option value="">Select Category</option>
+                            <option value="0">সব ক্যাটাগরি</option>
                             @foreach($Categories as $category)
                                 <option value="{{$category->id}}">{{$category->categoryName}}</option>
                             @endforeach
