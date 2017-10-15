@@ -24,16 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-//     $config_items = User::all ();
-
         $test=auth()->user()->role_id;
         if ($test==NULL){
             return view('welcome');
         }else{
             return view('admin.home');
         }
-
-
     }
 }
