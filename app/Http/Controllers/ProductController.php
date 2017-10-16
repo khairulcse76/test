@@ -39,6 +39,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        $Cagetoryarray=$request->subCategoryId;
+        $subcategoryId = implode(",", $Cagetoryarray);
+        echo $subcategoryId;
+        exit();
+        $colors = $request->colorId;
+        $color = implode(",", $colors);
+        echo $color;
+//        exit();
+
         $this->validate($request,[
             'subCategoryId' => 'required',
             'brandName' => 'required',
@@ -49,31 +58,36 @@ class ProductController extends Controller
             'minQuantity' => 'required',
         ]);
 
-        $data[]= $request->subCategoryId;
-//        $arr = array('Hello','World!','Beautiful','Day!');
 
-        echo  "<pre>";
-        print_r($data);
-//        print_r($arr);
-        exit();
-
-        $item = new Color;
+        $item = new Product;
 
         $unique=Product::all();
-        $Name=strtolower($request->modelNo);
+        $ModelName=strtolower($request->modelNo);
         foreach ($unique as $value){
-            if ($value->colorName == ucfirst($Name)){
+            if ($value->modelNo == ucfirst($ModelName)){
                 session()->flash('warning', 'Model Number already exist..!!!');
                 return back();
             }
         }
 
-        $item->colorName = ucfirst($Name);
+        $item->subCategoryId = $subcategoryId;
+        $item->colorId = $color;
+        $item->brandName = $request->brandName;
+        $item->productName = $request->productName;
+        $item->modelNo = ucfirst($ModelName);
+        $item->productDescription = $request->productDescription;
+        $item->productPrice = $request->productPrice;
+        $item->productPrice = $request->productPrice;
+        $item->quantity = $request->quantity;
+        $item->minQuantity = $request->minQuantity;
+        $item->availability = $request->availability;
+        $item->condition = $request->condition;
+        $item->condition = $request->condition;
+
         $success=$item->save();
         if ($success){
-            session()->flash('massage', 'Color Successfully Save....!');
+            session()->flash('massage', 'Product Successfull Saved.');
         }
-
         return back();
     }
 

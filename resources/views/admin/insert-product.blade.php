@@ -141,7 +141,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <select class="form-control select2"  multiple="multiple" data-placeholder="পণ্যের কালার/ রং "
+                        <select class="form-control select2" name="colorId[]" id="colorId" multiple="multiple" data-placeholder="পণ্যের কালার/ রং "
                                 style="width: 100%; color: #00a157;">
                             <?php
                             use App\Color;
