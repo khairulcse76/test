@@ -75,7 +75,7 @@
             <a href="{{ url('/home') }}">Home</a>
             <a  href="{{ route('logout') }}" class="btn btn-default btn-flat"
                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                 document.getElementById('logout-form').submit();">
                 Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

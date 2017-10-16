@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Print_;
 
 class ProductController extends Controller
 {
@@ -36,7 +38,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,[
+            'subCategoryId' => 'required',
+            'brandName' => 'required',
+            'productName' => 'required',
+            'modelNo' => 'required',
+            'productPrice' => 'required',
+            'quantity' => 'required',
+            'minQuantity' => 'required',
+        ]);
+
+        $data[]= $request->subCategoryId;
+//        $arr = array('Hello','World!','Beautiful','Day!');
+
+        echo  "<pre>";
+        print_r($data);
+//        print_r($arr);
+        exit();
+
+        $item = new Color;
+
+        $unique=Product::all();
+        $Name=strtolower($request->modelNo);
+        foreach ($unique as $value){
+            if ($value->colorName == ucfirst($Name)){
+                session()->flash('warning', 'Model Number already exist..!!!');
+                return back();
+            }
+        }
+
+        $item->colorName = ucfirst($Name);
+        $success=$item->save();
+        if ($success){
+            session()->flash('massage', 'Color Successfully Save....!');
+        }
+
+        return back();
     }
 
     /**

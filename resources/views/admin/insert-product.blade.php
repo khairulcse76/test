@@ -10,7 +10,7 @@
 @section('main_content')
     <div class="col-md-2"> </div>
     <div class="col-md-8">
-        <form class="form-horizontal" action="{{ URL::to('/') }}" method="post" enctype="multipart/form-data" >
+        <form class="form-horizontal" action="{{ URL::to('/authorize/product-store') }}" method="post" enctype="multipart/form-data" >
             {{ csrf_field() }}
         <div class="box box-info">
             <div class="box-footer">
@@ -31,6 +31,13 @@
                     </div>
                 </div><hr>
             @endif
+            @if(session('warning'))
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="alert alert-warning" style="font-size: large; padding: 2px;"><center>{{ session('warning') }}</center></div>
+                    </div>
+                </div><hr>
+            @endif
             <div class="box-header with-border">
                 <h2 class="box-title">একটি নতুন পণ্য যোগ করুন </h2>
             </div>
@@ -40,9 +47,9 @@
             <div class="box-body">
             <div class="form-group">
                 <div class="col-sm-11">
-                    <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" ব্যাগের নাম">
-                    @if($errors->has('admin_name'))
-                        <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                    <input type="text" class="form-control" name="productName" id="productName" value="{{ old('productName') }}" placeholder=" ব্যাগের নাম">
+                    @if($errors->has('productName'))
+                        <span style="color:red;">{{ $errors->first('productName') }}</span>
                     @endif
                 </div>
             </div>
@@ -52,9 +59,8 @@
                             <h3 class="box-title">পণ্যের বিবরণ</h3>
                         </div>
                         <form>
-                            <textarea name="long_description"  id="long_description" class="textarea" placeholder="পণ্যের বিস্তারিত বর্ণনা "
-                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                            </textarea>
+                            <textarea name="productDescription"  id="productDescription" class="textarea" placeholder="পণ্যের বিস্তারিত বর্ণনা "
+                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ old('productDescription') }}</textarea>
                         </form>
                     </div>
                 </div>
@@ -63,33 +69,33 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" পণ্যের মডেল নাম্বার">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="text" class="form-control" name="modelNo" id="modelNo" value="{{ old('modelNo') }}" placeholder=" পণ্যের মডেল নাম্বার">
+                        @if($errors->has('modelNo'))
+                            <span style="color:red;">{{ $errors->first('modelNo') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder="পণ্যের মূল্য">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="number" class="form-control" name="productPrice" id="productPrice" value="{{ old('productPrice') }}" placeholder="পণ্যের মূল্য">
+                        @if($errors->has('productPrice'))
+                            <span style="color:red;">{{ $errors->first('productPrice') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder="পণ্যের পণ্যের পরিমাণ">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="text" class="form-control" name="quantity" id="quantity" value="{{ old('quantity') }}" placeholder="পণ্যের পরিমাণ">
+                        @if($errors->has('quantity'))
+                            <span style="color:red;">{{ $errors->first('quantity') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder="মিনিমাম সংখ্যা">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="text" class="form-control" name="minQuantity" id="minQuantity" value="{{ old('minQuantity') }}" placeholder="মিনিমাম সংখ্যা">
+                        @if($errors->has('minQuantity'))
+                            <span style="color:red;">{{ $errors->first('minQuantity') }}</span>
                         @endif
                     </div>
                 </div>
@@ -98,47 +104,52 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <select class="form-control select2">
+                        <?php
+                        use App\brand;
+                        $brands=brand::all();
+                        ?>
+                        <select class="form-control select2" name="brandName" id="brandName">
                             <option selected="selected">ব্র্যান্ড নাম</option>
-                            <option>Alaska</option>
-                            <option disabled="disabled">California (disabled)</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                            @foreach($brands as $item)
+                            <option value="{{ $item->brandName }}">{{ $item->brandName }}</option>
+                                @endforeach
                         </select>
+                            @if($errors->has('brandName'))
+                                <span style="color:red;">{{ $errors->first('brandName') }}</span>
+                            @endif
                     </div>
                 </div>
                 <div class="form-group">
+                    <?php
+                    use App\SubCategory;
+                    $subcategories=SubCategory::all();
+                    ?>
                     <div class="col-sm-11">
-                        <select class="form-control select2">
-                            <option selected="selected">ক্যাটাগরি</option>
-                            <option>Alaska</option>
-                            <option disabled="disabled">California (disabled)</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        <select class="form-control select2" name="subCategoryId[]" multiple="multiple" data-placeholder="ক্যাটাগরি"
+                                style="width: 100%; color: #00a157;">
+                            @foreach($subcategories as $item)
+                            <option value="{{$item->id}}">{{ $item->subCategoryName }}</option>
+                                @endforeach
                         </select>
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        @if($errors->has('subCategoryId'))
+                            <span style="color:red;">{{ $errors->first('subCategoryId') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="box-header with-border">
-                    <h2 class="box-title">অপশন </h2>
+                    <h2 class="box-title">অপশন</h2>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <select class="form-control select2" multiple="multiple" data-placeholder="পণ্যের কালার/ রং "
+                        <select class="form-control select2"  multiple="multiple" data-placeholder="পণ্যের কালার/ রং "
                                 style="width: 100%; color: #00a157;">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                            <?php
+                            use App\Color;
+                            $colors=Color::all();
+                            ?>
+                            @foreach($colors as $color)
+                            <option value="{{ $color->id }}">{{ $color->colorName }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -150,48 +161,74 @@
                         @endif
                     </div>
                 </div>
-
-                <div class="box-header with-border">
-                    <h2 class="box-title">পণ্যের ছবি </h2>
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <label for="Condition">Condition</label>
+                        <select class="form-control" name="condition" id="condition">
+                            <option value="New">New</option>
+                            <option value="Old">Old</option>
+                            <option value="UpComing">UpComing</option>
+                        </select>
+                        @if($errors->has('condition'))
+                            <span style="color:red;">{{ $errors->first('condition') }}</span>
+                        @endif
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="file" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" পণ্যের রং">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <label for="Availability">Availability</label>
+                        <select class="form-control" name="availability" id="availability">
+                            <option value="1">In Stock</option>
+                            <option value="0">Out of Stock</option>
+                        </select>
+                        @if($errors->has('condition'))
+                            <span style="color:red;">{{ $errors->first('condition') }}</span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="box-header with-border">
+                    <h2 class="box-title">পণ্যের ছবি </h2>
+                    <small id="fileHelpId" class="form-text text-muted" style="color:red">( file size must me less then 100kb )</small>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-11">
+                        <input type="file"  value="{{ old('productFile') }}" class="form-control-file" name="productFile" id="product_file"  aria-describedby="fileHelpId">
+                        @if($errors->has('productFile'))
+                            <span style="color:red;">{{ $errors->first('productFile') }}</span>
                         @endif
                     </div>
                 </div>
             <div class="box-header with-border">
-                    <h2 class="box-title">অনন্যা ছবি সমূহ</h2>
+                    <h2 class="box-title">অতিরিক্ত চিত্র/ছবি সমূহ</h2>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="file" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" পণ্যের রং">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="file"  value="{{ old('productFile1') }}" class="form-control-file" name="productFile1" id="productFile1"  aria-describedby="fileHelpId">
+                        @if($errors->has('productFile1'))
+                            <span style="color:red;">{{ $errors->first('productFile1') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="file" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" পণ্যের রং">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="file"  value="{{ old('productFile2') }}" class="form-control-file" name="productFile2" id="productFile2"  aria-describedby="fileHelpId">
+                        @if($errors->has('productFile2'))
+                            <span style="color:red;">{{ $errors->first('productFile2') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <input type="file" class="form-control" name="admin_name" id="admin_name" value="{{ old('admin_name') }}" placeholder=" পণ্যের রং">
-                        @if($errors->has('admin_name'))
-                            <span style="color:red;">{{ $errors->first('admin_name') }}</span>
+                        <input type="file"  value="{{ old('productFile3') }}" class="form-control-file" name="productFile3" id="productFile3"  aria-describedby="fileHelpId">
+                        @if($errors->has('productFile3'))
+                            <span style="color:red;">{{ $errors->first('productFile3') }}</span>
                         @endif
                     </div>
                 </div>
 
             <div class="box-footer">
-                <a href="{{ URL::to('admin/dashboard') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ URL::to('#') }}" class="btn btn-default">Cancel</a>
                 <button type="submit" class="btn btn-info pull-right">S a v e</button>
             </div>
         </div>

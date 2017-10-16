@@ -50,6 +50,12 @@
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+
+                    <li>
+                    <a href="{{ URL::to('/') }}" class="btn btn-lg">
+                        <span class=""><b>Frontend</b></span>
+                    </a>
+                    </li>
                     <!-- Messages: style can be found in dropdown.less-->
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -373,6 +379,20 @@
                         </li>
                     </ul>
 
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-laptop"></i>
+                        <span>Color</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('authorize/insert-color') }}"><i class="fa fa-circle-o"></i>Insert Color</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Color Manage</a></li>
+                    </ul>
                 </li>
 
                 <li class="treeview">
