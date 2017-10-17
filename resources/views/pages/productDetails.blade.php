@@ -1,33 +1,31 @@
 @extends('layouts.master');
 
 @section('main_content')
-{{--<!--    --> //<?php echo $product['productFile']; echo ""; print_r($product); exit(); ?>--}}
-
     <div class="col-sm-9 padding-right">
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
                 <div class="view-product">
-                    <img src="{{ $product->productFile }}" alt="" />
-                    <h3>ZOOM</h3>
+                    <img src="{{ asset($product->productFile) }}" alt="" />
+                    <h3></h3>
                 </div>
                 <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
                         </div>
                         <div class="item">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
+                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
                         </div>
 
                     </div>
@@ -45,11 +43,11 @@
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
                     <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-                    <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-                    <p>Web ID: 1089772</p>
-                    <img src="images/product-details/rating.png" alt="" />
+                    <h2>{{ $product->productName }}</h2>
+                    <p>Model No: {{ $product->modelNo }}</p>
+                    <img src="{{ asset('images/product-details/rating.png') }}" alt="" />
                     <span>
-									<span>US $59</span>
+									<span>BDT ${{ $product->productPrice }}</span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
@@ -57,13 +55,13 @@
 										Add to cart
 									</button>
 								</span>
-                    <p><b>Availability:</b> In Stock</p>
-                    <p><b>Condition:</b> New</p>
-                    <p><b>Brand:</b> E-SHOPPER</p>
+                    <p><b>Availability:</b> {{ $product->availability }}</p>
+                    <p><b>Condition:</b> {{ $product->condition }}</p>
+                    <p><b>Brand:</b> {{ $product->brandName }}</p>
                     <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                 </div><!--/product-information-->
             </div>
-        </div><!--/product-details-->
+        </div>
 
         <div class="category-tab shop-details-tab"><!--category-tab-->
             <div class="col-sm-12">
@@ -347,5 +345,25 @@
         </div><!--/recommended_items-->
 
     </div>
+@endsection
 
-    @endsection
+
+@section('stylescss')
+    <link href="{{ asset('css/forDetails/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/forDetails/flexslider.css')}}" rel="stylesheet">
+@endsection
+@section('JavaScript')
+    <script type="text/javascript" src="{{ asset('js/forDetails/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('js/forDetails/imagezoom.js') }}"></script>
+
+    <script src="js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+@endsection

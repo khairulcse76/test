@@ -1,8 +1,10 @@
+
+@extends('layouts.master');
+
 <?php
 $product=\App\Product::all();
 ?>
 
-@extends('layouts.master');
 
 @section('slider')
     <div class="container">
