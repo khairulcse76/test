@@ -7,6 +7,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/user-product-details/{id}', 'HomeController@productDetails');
+Route::get('/admin/view-admin/{id}', 'AdminController@viewAdmin');
 
 
 Route::group([

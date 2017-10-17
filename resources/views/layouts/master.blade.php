@@ -43,15 +43,16 @@ $subCategories=SubCategory::all();
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <li><a href="#"><span style="color: red">HOT LINE:- <i class="fa fa-phone"></i> +09613300400</span></a></li>
+                            <li><a href="#"><span style="color: blue"><i class="fa fa-envelope"></i> mail@maxbagworld.com</span></a></li>
+                            <li><a href="#"><span style="color: green;">@if(Auth::user())<i class="fa fa-user"></i> {{ Auth::user()->name }} @endif</span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/maxbagworld/?ref=bookmarks" target="_blank"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                             <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
@@ -68,7 +69,7 @@ $subCategories=SubCategory::all();
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="{{ asset('images/home/logo.png')}}" alt="" /></a>
+                        <a href="index.html"><img src="{{ asset('images/home/max_logo.png')}}" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
