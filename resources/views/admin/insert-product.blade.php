@@ -7,6 +7,7 @@
         selector: 'textarea'
     });
 </script>
+{{--test prodject how to id ata ki hocce amr sathe--}}
 @section('main_content')
     <div class="col-md-2"> </div>
     <div class="col-md-8">
@@ -188,7 +189,7 @@
                 </div>
 
                 <div class="box-header with-border">
-                    <h2 class="box-title">পণ্যের ছবি </h2>
+                    <h2 class="box-title">পণ্যের চিত্র/ ছবি </h2>
                     <small id="fileHelpId" class="form-text text-muted" style="color:red">( file size must me less then 100kb )</small>
                 </div>
                 <div class="form-group">

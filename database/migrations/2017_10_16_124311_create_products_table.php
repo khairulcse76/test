@@ -6,18 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('categoryId')->nullable();
-            $table->string('subCategoryId');
-            $table->string('colorId');
+            $table->text('subCategoryId');
+            $table->text('colorId');
             $table->string('brandName');
             $table->string('productName');
             $table->string('modelNo')->unique();
