@@ -3,11 +3,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/image', function () {
+    return view('image');
+});
+Route::get('/user-product-details/{id}', 'ProductController@productDetails');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/user-product-details/{id}', 'HomeController@productDetails');
 Route::get('/admin/view-admin/{id}', 'AdminController@viewAdmin');
 
 

@@ -190,6 +190,19 @@ class ProductController extends Controller
 //        return back();
     }
 
+    public function productDetails($id)
+    {
+        $product=Product::find($id);
+
+//        print_r($product); exit();
+//            Product::w('id', $id)->get();
+//        ModelName::where('name_id', $id)->get();
+//        where('id', $id)->get();
+
+        return view('pages.productDetails')->with('product', $product);
+
+    }
+
     /**
      * Display the specified resource.
      *

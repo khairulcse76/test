@@ -1,42 +1,33 @@
 @extends('layouts.master');
-
+@section('stylescss')
+    <link href="{{ asset('js2/style.css')}}" rel="stylesheet" type="text/css">
+@endsection
 @section('main_content')
     <div class="col-sm-9 padding-right">
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
                 <div class="view-product">
-                    <img src="{{ asset($product->productFile) }}" width="150" height="381" alt="" />
-                    <h3>Zoom</h3>
-                </div>
-                <div id="similar-product" class="carousel slide" data-ride="carousel">
+                    <div class="bzoom_wrap">
+                        <ul id="bzoom">
+                            <li>
+                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset($product->productFile) }}"/>
+                            </li>
+                            <li>
+                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile1) }}" title="2 img" />
+                                <img class="bzoom_big_image" src="{{ asset($product->productFile1) }}"/>
+                            </li>
+                            <li>
+                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile2) }}" title="3 img" />
+                                <img class="bzoom_big_image" src="{{ asset($product->productFile2) }}"/>
+                            </li>
+                            <li>
+                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile3) }}" title="4 img" />
+                                <img class="bzoom_big_image" src="{{ asset($product->productFile3) }}"/>
+                            </li>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
-                        </div>
-                        <div class="item">
-                            <a href=""><img src="{{ asset($product->productFile1) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile2) }}" width="84" height="85" alt=""></a>
-                            <a href=""><img src="{{ asset($product->productFile3) }}" width="84" height="85" alt=""></a>
-                        </div>
-
+                        </ul>
                     </div>
-
-                    <!-- Controls -->
-                    <a class="left item-control" href="#similar-product" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="right item-control" href="#similar-product" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 </div>
 
             </div>
@@ -347,23 +338,15 @@
     </div>
 @endsection
 
-
-@section('stylescss')
-    <link href="{{ asset('css/forDetails/bootstrap.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/forDetails/flexslider.css')}}" rel="stylesheet">
-@endsection
-@section('JavaScript')
-    <script type="text/javascript" src="{{ asset('js/forDetails/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('js/forDetails/imagezoom.js') }}"></script>
-
-    <script src="js/jquery.flexslider.js"></script>
+@section('javaScript')
+    <script src="{{ asset('js2/jquery-2.1.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js2/jqzoom.js') }}" type="text/javascript"></script>
     <script>
-        // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
+        $("#bzoom").zoom({
+            zoom_area_width: 350,
+            autoplay_interval :3000,
+            small_thumbs : 4,
+            autoplay : false
         });
     </script>
 @endsection

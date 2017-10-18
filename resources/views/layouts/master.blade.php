@@ -17,6 +17,7 @@ $subCategories=SubCategory::all();
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
+    @yield('stylescss')
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/prettyPhoto.css')}}" rel="stylesheet">
@@ -25,7 +26,7 @@ $subCategories=SubCategory::all();
     <link href="{{ asset('css/main.css')}}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css')}}" rel="stylesheet">
 
-    @yield('stylescss')
+
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
@@ -418,7 +419,7 @@ $subCategories=SubCategory::all();
 </footer><!--/Footer-->
 
 
-@yield('JavaScript')
+@yield('javaScript')
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
