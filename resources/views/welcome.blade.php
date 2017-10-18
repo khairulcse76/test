@@ -91,6 +91,7 @@ $product=\App\Product::all();
                                     <a href="/user-product-details/{{ $item->id }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
+                            <img src="images/home/new.png" class="new" alt="" />
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -106,7 +107,7 @@ $product=\App\Product::all();
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="images/home/product3.jpg" alt="" />
+                            <img src="images/home/product3.jpg" width="268" height="249" alt="" />
                             <h2>$56</h2>
                             <p>Easy Polo Black Edition</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -118,6 +119,7 @@ $product=\App\Product::all();
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                         </div>
+                        <img src="images/home/new.png" class="new" alt="" />
                     </div>
                     <div class="choose">
                         <ul class="nav nav-pills nav-justified">
