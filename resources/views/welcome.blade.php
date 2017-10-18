@@ -79,7 +79,7 @@ $product=\App\Product::all();
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="{{ asset($item->productFile) }}" width="268" height="249" alt="" />
+                                <img src="{{ asset($item->productFile) }}" alt="" />
                                 <h2>$56</h2>
                                 <p>{{ $item->productName }}</p>
                                 <a href="/user-product-details/{{ $item->id }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>

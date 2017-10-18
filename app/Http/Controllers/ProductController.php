@@ -40,25 +40,25 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $image = $request->file('productFile');
-        $image1 = $request->file('productFile1');
-        $image2 = $request->file('productFile2');
-        $image3 = $request->file('productFile3');
-        $imageSize = File::size($image);
-        echo "<pre>";
-        print_r($image);
-        echo $imageSize; exit();
-        $image1Size = File::size($image1);
-        $image2Size = File::size($image2);
-        $image3Size = File::size($image3);
-        if ($imageSize < 512000 || $image1Size > 512000 || $image2Size > 512000 || $image3Size > 512000){
-            session()->flash('warning', 'Image size must Less then 500 kb..!!!');
-            return back();
-        }else{
-            session()->flash('massage', 'Image size have Less then 500 kb..!!!');
-            return back();
-        }
-exit();
+//        $image = $request->file('productFile');
+//        $image1 = $request->file('productFile1');
+//        $image2 = $request->file('productFile2');
+//        $image3 = $request->file('productFile3');
+//        $imageSize = File::size($image);
+//        echo "<pre>";
+//        print_r($image);
+//        echo $imageSize; exit();
+//        $image1Size = File::size($image1);
+//        $image2Size = File::size($image2);
+//        $image3Size = File::size($image3);
+//        if ($imageSize < 512000 || $image1Size > 512000 || $image2Size > 512000 || $image3Size > 512000){
+//            session()->flash('warning', 'Image size must Less then 500 kb..!!!');
+//            return back();
+//        }else{
+//            session()->flash('massage', 'Image size have Less then 500 kb..!!!');
+//            return back();
+//        }
+//exit();
         $this->validate($request,[
             'subCategoryId' => 'required',
             'brandName' => 'required',
@@ -109,10 +109,10 @@ exit();
         $image1Size = File::size($image1);
         $image2Size = File::size($image2);
         $image3Size = File::size($image3);
-        if ($imageSize || $image1Size || $image2Size || $image3Size <= 512000){
-            session()->flash('warning', 'Image size must Less then 500 kb..!!!');
-            return back();
-        }
+//        if ($imageSize || $image1Size || $image2Size || $image3Size <= 512000){
+//            session()->flash('warning', 'Image size must Less then 500 kb..!!!');
+//            return back();
+//        }
         if ($image) {
             $image_name = str_random(20);
             $ext = strtolower($image->getClientOriginalExtension());

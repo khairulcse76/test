@@ -5,8 +5,8 @@
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
                 <div class="view-product">
-                    <img src="{{ asset($product->productFile) }}" alt="" />
-                    <h3></h3>
+                    <img src="{{ asset($product->productFile) }}" width="150" height="381" alt="" />
+                    <h3>Zoom</h3>
                 </div>
                 <div id="similar-product" class="carousel slide" data-ride="carousel">
 
