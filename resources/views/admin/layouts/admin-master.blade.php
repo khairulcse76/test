@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('admin/others/css/jquery-jvectormap.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/dataTables.bootstrap.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/_all-skins.min.css') }}">
@@ -334,7 +335,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('authorize/insert-product') }}"><i class="fa fa-circle-o"></i> Product Insert</a></li>
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Product View</a></li>
+                        <li class="active"><a href="{{ url('authorize/manage-product') }}"><i class="fa fa-circle-o"></i>Product Manage</a></li>
                     </ul>
 
                 </li>
@@ -805,34 +806,10 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admin/dist/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<script src="{{ asset('admin/dist/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/dist/js/dataTables.bootstrap.min.js') }}"></script>
 
 @yield('script')
 </body>
 </html>
 
-
-
-{{--@extends('layouts.app')--}}
-
-{{--@section('content')--}}
-{{--<div class="container">--}}
-{{--<div class="row">--}}
-{{--<div class="col-md-8 col-md-offset-2">--}}
-{{--<div class="panel panel-default">--}}
-{{--<div class="panel-heading">Dashboard</div>--}}
-
-{{--<div class="panel-body">--}}
-{{--@if (session('status'))--}}
-{{--<div class="alert alert-success">--}}
-{{--{{ session('status') }}--}}
-{{--</div>--}}
-{{--@endif--}}
-
-{{--You are logged in!--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endsection--}}

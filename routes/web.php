@@ -23,7 +23,7 @@ Route::group([
 
         Route::get('/insert-product', 'ProductController@create');
         Route::post('/product-store', 'ProductController@store');
-        Route::get('/manage-product', 'ProductController@index');
+        Route::get('/manage-product', 'ProductController@productManage');
 
         //Category Routes
         Route::get('/insert-category', 'CategoryController@create');

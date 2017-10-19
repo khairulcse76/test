@@ -106,7 +106,7 @@ $product=\App\Product::all();
             {{--Product End--}}
         </div><!--features_items-->
 
-        <div class="category-tab"><!--category-tab-->
+        <div class="category-tab"><!--catepgory-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>

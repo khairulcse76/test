@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Print_;
 use Illuminate\Support\Facades\File;
 use Image;
+use DB;
 
 class ProductController extends Controller
 {
@@ -38,6 +39,29 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function productManage()
+    {
+        $products = DB::table('products')
+            ->join('sub_categories', 'products.subCategoryId', '=', 'sub_categories.id')
+            ->select('products.*', 'sub_categories.subCategoryName')
+            ->get();
+
+        return view('admin.pages.productManage')->with('products', $products);
+
+    }
+    public function productDetails($id)
+    {
+        $product=Product::find($id);
+
+//        print_r($product); exit();
+//            Product::w('id', $id)->get();
+//        ModelName::where('name_id', $id)->get();
+//        where('id', $id)->get();
+
+        return view('pages.productDetails')->with('product', $product);
+
+    }
+
     public function store(Request $request)
     {
       //validation Start
@@ -55,23 +79,6 @@ class ProductController extends Controller
         $image1=$request->file('productFile1');
         $image2=$request->file('productFile2');
         $image3=$request->file('productFile3');
-//        $originalName= $image->getClientOriginalName();
-//        $inpute=md5($originalName).time().'.'.$image->getClientOriginalExtension();
-//        $destinationPath=public_path('/upload/thumbs');
-//        $img= Image::make($image->getRealPath());
-//        $img->resize(100, 70, function ($constraint){
-//            $constraint->aspectRatio();
-//        })->save($destinationPath.'/'.$inpute);
-//        $destinationPath2=public_path('/upload/homepicture/');
-//        $img2= Image::make($image->getRealPath());
-//        $img2->resize(268, 249, function ($constraint){
-//            $constraint->aspectRatio();
-//        })->save($destinationPath2.'/'.$inpute);
-//        $destinationPath='/upload';
-//        $image_url=$destinationPath.'/'.$inpute;
-//        $success=$image->move($destinationPath, $inpute);
-
-//        if ($success){ echo 'Move success'.$imgurl; }; exit();
 
         if ($image){
             $this->validate($request,[
@@ -90,8 +97,6 @@ class ProductController extends Controller
                 'productFile3' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:300',
             ]);
         }
-    //validation End
-
 
         $Cagetoryarray=$request->subCategoryId;
         $subcategoryId = implode(".", $Cagetoryarray);
@@ -337,18 +342,7 @@ class ProductController extends Controller
 //    session()->flash('massage', 'Product Successfull Saved.');
 //    return back();
 //}
-    public function productDetails($id)
-    {
-        $product=Product::find($id);
 
-//        print_r($product); exit();
-//            Product::w('id', $id)->get();
-//        ModelName::where('name_id', $id)->get();
-//        where('id', $id)->get();
-
-        return view('pages.productDetails')->with('product', $product);
-
-    }
 
     /**
      * Display the specified resource.
