@@ -79,7 +79,7 @@ $product=\App\Product::all();
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="{{ asset($item->productFile) }}" width="268" height="249" alt="" />
+                                <img src="{{ asset('upload/homepicture/'.$item->productFile) }}"  alt="" />
                                 <h2>$56</h2>
                                 <p>{{ $item->productName }}</p>
                                 <a href="/user-product-details/{{ $item->id }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -91,7 +91,8 @@ $product=\App\Product::all();
                                     <a href="/user-product-details/{{ $item->id }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
-                            <img src="images/home/new.png" class="new" alt="" />
+
+                            @if($item->condition == 'New' ) <img src="images/home/new.png" class="new" alt="" /> @endif
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">

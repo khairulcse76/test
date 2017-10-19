@@ -134,27 +134,39 @@ class ProductController extends Controller
             $imghomepicture->resize(268, 249, function ($constraint){
                 $constraint->aspectRatio();
             })->save($destinationPathhomepicture.'/'.$inpute);
+            $destinationPathProductDetails=public_path('/upload/productDetails/');
+            $imgproductDetails= Image::make($image->getRealPath());
+            $imgproductDetails->resize(300, 330, function ($constraint){
+                $constraint->aspectRatio();
+            })->save($destinationPathProductDetails.'/'.$inpute);
             $destinationPathUpload=public_path('/upload');
-            $dnpfordatabase='/upload';
-            $image_url=$dnpfordatabase.'/'.$inpute;
+            $image_url=$inpute;
             $success=$image->move($destinationPathUpload, $inpute);
             if ($success){
                    if ($image1){
                        $originalName1= $image1->getClientOriginalName();
                        $inpute1=md5($originalName1).time().'.'.$image1->getClientOriginalExtension();
+                       //resize 1
                        $destinationPaththumbs1=public_path('/upload/thumbs');
                        $imgthumbs1= Image::make($image1->getRealPath());
                        $imgthumbs1->resize(100, 70, function ($constraint){
                            $constraint->aspectRatio();
                        })->save($destinationPaththumbs1.'/'.$inpute1);
+                       //resize 2
                        $destinationPathhomepicture1=public_path('/upload/homepicture/');
                        $imghomepicture1= Image::make($image1->getRealPath());
                        $imghomepicture1->resize(268, 249, function ($constraint){
                            $constraint->aspectRatio();
                        })->save($destinationPathhomepicture1.'/'.$inpute1);
+                       //resize 3
+                       $destinationPathProductDetails1=public_path('/upload/productDetails/');
+                       $imgproductDetails1= Image::make($image1->getRealPath());
+                       $imgproductDetails1->resize(300, 330, function ($constraint){
+                           $constraint->aspectRatio();
+                       })->save($destinationPathProductDetails1.'/'.$inpute1);
+
                        $destinationPathUpload1=public_path('/upload');
-                       $dnpfordatabase1='/upload';
-                       $image_url1=$dnpfordatabase1.'/'.$inpute1;
+                       $image_url1=$inpute1;
                        $success1=$image1->move($destinationPathUpload1, $inpute1);
                        if ($success1){
                            if ($image2){
@@ -170,9 +182,13 @@ class ProductController extends Controller
                                $imghomepicture2->resize(268, 249, function ($constraint){
                                    $constraint->aspectRatio();
                                })->save($destinationPathhomepicture2.'/'.$inpute2);
+                               $destinationPathProductDetails2=public_path('/upload/productDetails/');
+                               $imgproductDetails2= Image::make($image2->getRealPath());
+                               $imgproductDetails2->resize(300, 330, function ($constraint){
+                                   $constraint->aspectRatio();
+                               })->save($destinationPathProductDetails2.'/'.$inpute2);
                                $destinationPathUpload2=public_path('/upload');
-                               $dnpfordatabase2='/upload';
-                               $image_url2=$dnpfordatabase2.'/'.$inpute2;
+                               $image_url2=$inpute2;
                                $success2=$image2->move($destinationPathUpload2, $inpute2);
                                if ($success2){
                                    if ($image3){
@@ -188,17 +204,22 @@ class ProductController extends Controller
                                        $imghomepicture3->resize(268, 249, function ($constraint){
                                            $constraint->aspectRatio();
                                        })->save($destinationPathhomepicture3.'/'.$inpute3);
+
+                                       $destinationPathProductDetails3=public_path('/upload/productDetails/');
+                                       $imgproductDetails3= Image::make($image3->getRealPath());
+                                       $imgproductDetails3->resize(300, 330, function ($constraint){
+                                           $constraint->aspectRatio();
+                                       })->save($destinationPathProductDetails3.'/'.$inpute3);
                                        $destinationPathUpload3=public_path('/upload');
-                                       $dnpfordatabase3='/upload';
-                                       $image_url3=$dnpfordatabase3.'/'.$inpute1;
-                                       $success3=$image1->move($destinationPathUpload3, $inpute3);
+                                       $image_url3=$inpute3;
+                                       $success3=$image3->move($destinationPathUpload3, $inpute3);
                                        if ($success3){
                                            $item['productFile'] = $image_url;
                                            $item['productFile1'] = $image_url1;
                                            $item['productFile2'] = $image_url2;
                                            $item['productFile3'] = $image_url3;
                                            $item->save();
-                                           session()->flash('massage', 'Product Successfull Saved.');
+                                           session()->flash('massage', 'Product Successfully Saved.');
                                            return back();
                                        }
                                    }else{
@@ -206,7 +227,7 @@ class ProductController extends Controller
                                        $item['productFile1'] = $image_url1;
                                        $item['productFile2'] = $image_url2;
                                        $item->save();
-                                       session()->flash('massage', 'Product Successfull Saved.');
+                                       session()->flash('massage', 'Product Successfully Saved.');
                                        return back();
                                    }
                                }
@@ -214,21 +235,21 @@ class ProductController extends Controller
                                $item['productFile'] = $image_url;
                                $item['productFile1'] = $image_url1;
                                $item->save();
-                               session()->flash('massage', 'Product Successfull Saved.');
+                               session()->flash('massage', 'Product Successfully Saved.');
                                return back();
                            }
                        }
                    }else{
                        $item['productFile'] = $image_url;
                        $item->save();
-                       session()->flash('massage', 'Product Successfull Saved.');
+                       session()->flash('massage', 'Product Successfully Saved.');
                        return back();
                    }
                 }
 
         }else{
             $item->save();
-            session()->flash('massage', 'Product Successfull Saved.');
+            session()->flash('massage', 'Product Successfully Saved.');
             return back();
         }
 

@@ -10,21 +10,33 @@
                     <div class="bzoom_wrap">
                         <ul id="bzoom">
                             <li>
-                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile) }}" title="first img" />
-                                <img class="bzoom_big_image" src="{{ asset($product->productFile) }}"/>
+                                <img class="bzoom_thumb_image" src="{{ asset('upload/homepicture/'.$product->productFile) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset('upload/homepicture/'.$product->productFile) }}"/>
                             </li>
+                            @if($product->productFile1 != NULL )
                             <li>
-                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile1) }}" title="2 img" />
-                                <img class="bzoom_big_image" src="{{ asset($product->productFile1) }}"/>
+                                <img class="bzoom_thumb_image" src="{{ asset('upload/homepicture/'.$product->productFile1) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset('upload/homepicture/'.$product->productFile1) }}"/>
                             </li>
+                            @endif
+                            @if($product->productFile2 != NULL )
                             <li>
-                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile2) }}" title="3 img" />
-                                <img class="bzoom_big_image" src="{{ asset($product->productFile2) }}"/>
+                                <img class="bzoom_thumb_image" src="{{ asset('upload/homepicture/'.$product->productFile2) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset('upload/homepicture/'.$product->productFile2) }}"/>
                             </li>
+                            @endif
+                            @if($product->productFile3 != NULL )
                             <li>
-                                <img class="bzoom_thumb_image" src="{{ asset($product->productFile3) }}" title="4 img" />
-                                <img class="bzoom_big_image" src="{{ asset($product->productFile3) }}"/>
+                                <img class="bzoom_thumb_image" src="{{ asset('upload/homepicture/'.$product->productFile3) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset('upload/homepicture/'.$product->productFile3) }}"/>
                             </li>
+                            @endif
+                            @if($product->productFile1 != NULL )
+                            <li>
+                                <img class="bzoom_thumb_image" src="{{ asset('upload/homepicture/'.$product->productFile1) }}" title="first img" />
+                                <img class="bzoom_big_image" src="{{ asset('upload/homepicture/'.$product->productFile1) }}"/>
+                            </li>
+                            @endif
 
                         </ul>
                     </div>
@@ -32,26 +44,24 @@
             </div>
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
-                    <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                    @if($product->condition == 'New' ) <img src="{{ asset('images/product-details/new.jpg') }}" class="newarrival" alt="" /> @endif
                     <h2>{{ $product->productName }}</h2>
                     <p>Model No: {{ $product->modelNo }}</p>
                     <img src="{{ asset('images/product-details/rating.png') }}" alt="" />
                     <span>
-									<span>BDT ${{ $product->productPrice }}</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
-                    <p><b>Availability:</b> {{ $product->availability }}</p>
+                        <span>BDT ৳{{ $product->productPrice }}.00</span>
+                        <label>Quantity:</label>
+                        <input type="text" value="" />
+                        <button type="button" class="btn btn-fefault cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Add to cart
+                        </button>
+					</span>
+                    <p><b>Availability:</b> @if($product->availability == 0) <span style="color: red;">Out of Stock</span> @else <span style="color: blue;">In Stock</span> @endif</p>
                     <p><b>Condition:</b> {{ $product->condition }}</p>
                     <p><b>Brand:</b> {{ $product->brandName }}</p>
-                    <p><b>Availability:</b> {{ $product->availability }}</p>
-                    <p><b>Condition:</b> {{ $product->condition }}</p>
-                    <p><b>Brand:</b> {{ $product->brandName }}</p>
-                    <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                    <a href=""><img src="{{ asset('images/product-details/share.png') }}" class="share img-responsive"  alt="" /></a>
+                    <br><br>
                 </div><!--/product-information-->
             </div>
         </div>

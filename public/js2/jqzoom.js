@@ -3,8 +3,8 @@
 		// 默认配置
 		var _option = {
 			align: "left",				// 当前展示图片的位置，则放大的图片在其相对的位置
-			thumb_image_width: 350,		// 当前展示图片的宽
-			thumb_image_height: 330,	// 当前展示图片的高
+			thumb_image_width: 266,		// 当前展示图片的宽
+			thumb_image_height: 381,	// 当前展示图片的高
 			source_image_width: 900,  	// 放大图片的宽
 			source_image_height: 1200,	// 放大图片的高
 			zoom_area_width: 600, 		// 放大图片的展示区域的宽
