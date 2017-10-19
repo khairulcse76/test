@@ -29,7 +29,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
@@ -46,6 +45,9 @@
 										Add to cart
 									</button>
 								</span>
+                    <p><b>Availability:</b> {{ $product->availability }}</p>
+                    <p><b>Condition:</b> {{ $product->condition }}</p>
+                    <p><b>Brand:</b> {{ $product->brandName }}</p>
                     <p><b>Availability:</b> {{ $product->availability }}</p>
                     <p><b>Condition:</b> {{ $product->condition }}</p>
                     <p><b>Brand:</b> {{ $product->brandName }}</p>
