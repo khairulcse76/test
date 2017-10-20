@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use DB;
+use Redirect;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+//            DB::table('brands')
+//            ->join('sub_categories', 'brands.subCategoryId', '=', 'sub_categories.id')
+//            ->select('brands.*', 'sub_categories.subCategoryName')
+//            ->get();
+
+        return view('admin.pages.category.manage-category')->with('category', $category);
     }
 
     /**
@@ -24,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.insert-category');
+        return view('admin.pages.category.insert-category');
     }
 
     /**
@@ -71,7 +79,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('admin.pages.category.edit-category')->with('category', $category);
     }
 
     /**
@@ -83,7 +93,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'categoryName' => 'required',
+        ]);
+
+        $item = Category::find($id);
+
+        $item->categoryName = $request->categoryName;
+        $item->user_id=auth()->user()->id;
+        $success=$item->update();
+        if ($success){
+            session()->flash('massage', 'Category Successfully Updated....!');
+        }
+        return redirect('authorize/manage-category');
     }
 
     /**
@@ -94,6 +116,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=Category::destroy($id);
+        if ($category){
+            session()->flash('warning', 'Category Successfully Deleted.....');
+        }
+        return redirect('authorize/manage-category');
     }
 }

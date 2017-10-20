@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\brand;
 use App\SubCategory;
 use Illuminate\Http\Request;
+use DB;
+use Redirect;
 
 class BrandController extends Controller
 {
@@ -15,7 +17,13 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = brand::all();
+//            DB::table('brands')
+//            ->join('sub_categories', 'brands.subCategoryId', '=', 'sub_categories.id')
+//            ->select('brands.*', 'sub_categories.subCategoryName')
+//            ->get();
+
+        return view('admin.pages.brand.manage-brand')->with('brands', $brands);
     }
 
     /**
@@ -26,7 +34,7 @@ class BrandController extends Controller
     public function create()
     {
         $subCategories=SubCategory::get();
-        return view('admin.pages.insert-brands', compact('subCategories'));
+        return view('admin.pages.brand.insert-brands', compact('subCategories'));
     }
 
     public function store(Request $request)
@@ -59,7 +67,9 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brands = brand::find($id);
+
+        return view('admin.pages.brand.edit-brand')->with('brands', $brands);
     }
 
     /**
@@ -71,7 +81,19 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'BrandName' => 'required|min:2',
+            'subCategoryId' => 'required',
+        ]);
+        $item = brand::find($id);
+        $item->BrandName = $request->BrandName;
+        $item->subCategoryId=$request->subCategoryId;
+
+        $success=$item->update();
+        if ($success){
+            session()->flash('massage', 'Brand Successfully Updated.....');
+        }
+        return redirect('authorize/manage-brand');
     }
 
     /**
@@ -82,6 +104,11 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand=brand::destroy($id);
+
+        if ($brand){
+            session()->flash('warning', 'Brand Successfully Deleted.....');
+        }
+        return redirect('authorize/manage-brand');
     }
 }

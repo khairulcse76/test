@@ -23,6 +23,17 @@
 @yield('style')
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script>
+        function check_delete() {
+            var msg=confirm('Are you sure you want to delete ?')
+
+            if(msg){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
     <![endif]-->
 
     <!-- Google Font -->
@@ -349,7 +360,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('authorize/insert-brand') }}"><i class="fa fa-circle-o"></i>Insert Brand</a></li>
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Brand Manage</a></li>
+                        <li class="active"><a href="{{ url('authorize/manage-brand') }}"><i class="fa fa-circle-o"></i>Brand Manage</a></li>
                     </ul>
                 </li>
 
@@ -363,7 +374,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ url('authorize/insert-category') }}"><i class="fa fa-circle-o"></i>Insert Category</a></li>
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Category Manage</a></li>
+                        <li class="active"><a href="{{ url('authorize/manage-category') }}"><i class="fa fa-circle-o"></i>Category Manage</a></li>
 
                         <li class="treeview">
                             <a href="#">
@@ -806,8 +817,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admin/dist/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('admin/dist/js/dataTables.bootstrap.min.js') }}"></script>
 
 @yield('script')
 </body>

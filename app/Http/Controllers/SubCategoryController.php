@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\SubCategory;
 use Illuminate\Http\Request;
+use DB;
+use Redirect;
 
 class SubCategoryController extends Controller
 {
@@ -15,7 +17,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subCategories=SubCategory::all();
+        return view('admin.pages.category.manage-subCategory')->with('subCategories', $subCategories);
     }
 
     /**
@@ -27,7 +30,7 @@ class SubCategoryController extends Controller
     {
         $Categories = Category::get();
 //        print_r($Categories); exit();
-        return view('admin.pages.insert-sub-category', compact('Categories'));
+        return view('admin.pages.category.insert-sub-category', compact('Categories'));
     }
 
     /**
@@ -73,7 +76,9 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subCategory=SubCategory::find($id);
+
+        return view('admin.pages.category.edit-subcategory')->with('subCategory', $subCategory);
     }
 
     /**
@@ -85,7 +90,20 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'subCategoryName' => 'required|min:3',
+            'category_id' => 'required',
+        ]);
+        $item=SubCategory::find($id);
+        $item->subCategoryName = $request->subCategoryName;
+        $item->category_id=$request->category_id;
+
+        $success=$item->update();
+        if ($success){
+            session()->flash('massage', 'Sub-Category Successfully Update');
+        }
+        return redirect('/authorize/subcategory-manage');
     }
 
     /**
@@ -96,6 +114,8 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SubCategory::destroy($id);
+        session()->flash('warning', 'Sub-Category Successfully Delete from record');
+        return redirect('/authorize/subcategory-manage');
     }
 }

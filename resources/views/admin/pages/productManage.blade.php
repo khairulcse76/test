@@ -1,3 +1,8 @@
+<?php
+
+$subcategories=DB::table('sub_categories')->get();
+?>
+
 @extends('admin.layouts.admin-master')
 @section('title') Admin | Category Create @endsection
 @section('pageHeader') Category Create @endsection
@@ -23,19 +28,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $id=1 ?>
+                            <?php $id=1 ;
+                            ?>
+
                             @foreach($products as $item)
                             <tr>
                                 <td><?php echo $id++; ?></td>
                                 <td>{{ $item->productName }}</td>
-                                <td>{{ $item->subCategoryName }}</td>
+                                <?php
+                                $subCategoryId=explode(".", $item->subCategoryId);
+
+                                ?>
+                                <td><?php foreach ($subCategoryId as $CategoroyId)
+                                {
+                                    foreach ($subcategories as $v_catId)
+                                        {
+                                            if ($CategoroyId== $v_catId->id){
+                                                echo $v_catId->subCategoryName."<br>";
+                                            }
+                                        }
+                                } ?></td>
                                 <td style="color:red; font-size: large; ">{{ $item->brandName }}</td>
                                 <td><img src="{{ asset('upload/thumbs/'.$item->productFile) }}"></td>
                                 <td>{{ $item->condition }}</td>
 
 
                                 <td>
-                                    <a href="" class="btn btn-info"><span class="glyphicon glyphicon-edit" title="Edit your Product"></span></a>
+                                    <a href="{{ url('authorize/edit-product/'.$item->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit" title="Edit your Product"></span></a>
                                     <a href="" class="btn btn-info"><span class="glyphicon glyphicon-plus" title="Add to top Product"></span></a>
                                     <a href="" class="btn btn-info"><span style="color:green;" class="glyphicon glyphicon-minus" title="Remove from top product"></span></a>
                                     <a href="" class="btn btn-warning"><span class="glyphicon glyphicon-trash" title="Delete all information of product"></span></a>
@@ -63,6 +82,8 @@
             </div>
 @endsection
 @section('script')
+    <script src="{{ asset('admin/dist/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
     $(function () {
         $('#example1').DataTable()

@@ -26,6 +26,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function product_update($id)
+    {
+        $product=Product::find($id);
+
+        return view('admin.pages.edit-product')->with('product', $product);
+    }
+    public function productedit($id)
+    {
+        $product=Product::find($id);
+        return view('admin.pages.edit-product')->with('product', $product);
+    }
     public function create()
     {
 //        echo "i am from create"; exit();
@@ -41,10 +52,10 @@ class ProductController extends Controller
      */
     public function productManage()
     {
-        $products = DB::table('products')
-            ->join('sub_categories', 'products.subCategoryId', '=', 'sub_categories.id')
-            ->select('products.*', 'sub_categories.subCategoryName')
-            ->get();
+        $products = Product::all();
+//            ->join('sub_categories', 'products.subCategoryId', '=', 'sub_categories.id')
+//            ->select('products.*', 'sub_categories.subCategoryName')
+//            ->get();
 
         return view('admin.pages.productManage')->with('products', $products);
 
@@ -181,7 +192,7 @@ class ProductController extends Controller
                                $imgthumbs2= Image::make($image2->getRealPath());
                                $imgthumbs2->resize(100, 70, function ($constraint){
                                    $constraint->aspectRatio();
-                               })->save($destinationPaththumbs2.'/'.$inpute);
+                               })->save($destinationPaththumbs2.'/'.$inpute2);
                                $destinationPathhomepicture2=public_path('/upload/homepicture/');
                                $imghomepicture2= Image::make($image2->getRealPath());
                                $imghomepicture2->resize(268, 249, function ($constraint){
