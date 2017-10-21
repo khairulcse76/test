@@ -106,12 +106,7 @@ class SubCategoryController extends Controller
         return redirect('/authorize/subcategory-manage');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         SubCategory::destroy($id);

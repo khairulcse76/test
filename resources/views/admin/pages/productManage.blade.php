@@ -12,10 +12,12 @@ $subcategories=DB::table('sub_categories')->get();
                     <div class="box-header">
                         <h3 class="box-title">Data Table With Full Features</h3>
                     </div>
+
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
+                            <tr></tr>
                             <tr>
                                 <th>id</th>
                                 <th>Product Name</th>
@@ -23,7 +25,10 @@ $subcategories=DB::table('sub_categories')->get();
                                 <th>Manufacturer </th>
                                 <th>Product Image</th>
                                 <th>Product Status</th>
-                                <th>Action</th>
+                                <th>Action
+                                    {{--<span class="pull-right btn btn-default" title="Click hare to Trashted data.."><a href="{{ url('authorize/product-trash/') }}" class=""></a></span>--}}
+                                    <a href="{{ url('authorize/product-trash/') }}" class="pull-right btn btn-danger"><span class="glyphicon glyphicon-folder-close" title="Click hare to Trashted data.."></span></a>
+                                </th>
 
                             </tr>
                             </thead>
@@ -57,7 +62,7 @@ $subcategories=DB::table('sub_categories')->get();
                                     <a href="{{ url('authorize/edit-product/'.$item->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit" title="Edit your Product"></span></a>
                                     <a href="" class="btn btn-info"><span class="glyphicon glyphicon-plus" title="Add to top Product"></span></a>
                                     <a href="" class="btn btn-info"><span style="color:green;" class="glyphicon glyphicon-minus" title="Remove from top product"></span></a>
-                                    <a href="" class="btn btn-warning"><span class="glyphicon glyphicon-trash" title="Delete all information of product"></span></a>
+                                    <a href="{{ url('authorize/product-delete/'.$item->id) }}" class="btn btn-warning" onclick="return check_delete(); "><span class="glyphicon glyphicon-trash" title="Delete all information of product"></span></a>
                                 </td>
                             </tr>
                                 @endforeach

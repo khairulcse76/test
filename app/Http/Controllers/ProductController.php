@@ -205,6 +205,7 @@ class ProductController extends Controller
         $product=Product::find($id);
         return view('admin.pages.edit-product')->with('product', $product);
     }
+
     public function create()
     {
 //        echo "i am from create"; exit();
@@ -223,6 +224,7 @@ class ProductController extends Controller
         return view('admin.pages.productManage')->with('products', $products);
 
     }
+
     public function productDetails($id)
     {
         $product=Product::find($id);
@@ -354,6 +356,35 @@ class ProductController extends Controller
         }
     }
 
+    public function product_delete($id){
+        $item=Product::destroy($id);
+
+        if ($item){
+            session()->flash('warning', 'Product Successfully Deleted.....');
+        }
+        return redirect('authorize/manage-product');
+    }
+    public function trash(){
+        $trash=Product::onlyTrashed()->get();
+
+        return view('admin.pages.trash.product-trash')->with('trash', $trash);
+    }
+    public function restore($id){
+        Product::onlyTrashed()->where('id', $id)->restore();
+
+        return back();
+    }
+    public function force_delete($id){
+       $delete= Product::onlyTrashed()
+            ->where('id', $id)
+            ->get();
+        print_r($delete); exit();
+        return back();
+    }
+    public function forceDelete()
+    {
+        return $this->query->delete();
+    }
 
     private function file_delete($file){
         \File::Delete('upload/'.$file, 'upload/thumbs/'.$file, 'upload/frontimage/'.$file);

@@ -26,6 +26,10 @@ Route::group([
         Route::get('/manage-product', 'ProductController@productManage');
         Route::get('/edit-product/{id}', 'ProductController@productedit');
         Route::post('/product-update/{id}', 'ProductController@product_update');
+        Route::get('/product-delete/{id}', 'ProductController@product_delete');
+        Route::get('/product-trash', 'ProductController@trash');
+        Route::get('/product-restore/{id}', 'ProductController@restore');
+        Route::get('/force-delete/{id}', 'ProductController@force_delete');
 
         //Category Routes
         Route::get('/insert-category', 'CategoryController@create');
