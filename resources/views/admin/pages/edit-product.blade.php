@@ -11,7 +11,7 @@
 @section('main_content')
     <div class="col-md-2"> </div>
     <div class="col-md-8">
-        <form class="form-horizontal" action="{{ URL::to('/authorize/product-update') }}" method="post" enctype="multipart/form-data" >
+        <form class="form-horizontal" action="{{ URL::to('/authorize/product-update/'.$product->id) }}" method="post" enctype="multipart/form-data" >
             {{ csrf_field() }}
             <div class="box box-info">
                 <div class="box-footer">

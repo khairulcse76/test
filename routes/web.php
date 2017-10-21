@@ -25,7 +25,7 @@ Route::group([
         Route::post('/product-store', 'ProductController@store');
         Route::get('/manage-product', 'ProductController@productManage');
         Route::get('/edit-product/{id}', 'ProductController@productedit');
-        Route::post('/product-update', 'ProductController@product_update');
+        Route::post('/product-update/{id}', 'ProductController@product_update');
 
         //Category Routes
         Route::get('/insert-category', 'CategoryController@create');
