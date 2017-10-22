@@ -2,6 +2,10 @@
 @section('stylescss')
     <link href="{{ asset('js2/style.css')}}" rel="stylesheet" type="text/css">
 @endsection
+
+@section('sidber')
+    @include('includs.sidebar')
+@endsection
 @section('main_content')
     <div class="col-sm-9 padding-right">
         <div class="product-details"><!--product-details-->

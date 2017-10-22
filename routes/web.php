@@ -7,6 +7,8 @@ Route::get('/image', function () {
     return view('image');
 });
 Route::get('/user-product-details/{id}', 'ProductController@productDetails');
+Route::get('/checkout/', 'FrontendController@checkout');
+Route::get('/cart/', 'FrontendController@cart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

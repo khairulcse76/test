@@ -64,7 +64,7 @@
                 <ul class="nav navbar-nav">
 
                     <li>
-                    <a href="{{ URL::to('/') }}" class="btn btn-lg">
+                    <a href="{{ URL::to('/') }}" class="btn btn-lg" target="_blank">
                         <span class=""><b>Frontend</b></span>
                     </a>
                     </li>
