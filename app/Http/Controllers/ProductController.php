@@ -378,7 +378,7 @@ class ProductController extends Controller
        $delete= Product::onlyTrashed()
             ->where('id', $id)
             ->get();
-        print_r($delete); exit();
+        $delete->forceDelete();
         return back();
     }
     public function forceDelete()
