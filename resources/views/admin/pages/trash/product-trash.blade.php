@@ -1,6 +1,11 @@
 <?php
 
 $subcategories=DB::table('sub_categories')->get();
+
+if (empty($trash)){
+
+    redirect('authorize/manage-product');
+}
 ?>
 
 @extends('admin.layouts.admin-master')
@@ -59,7 +64,7 @@ $subcategories=DB::table('sub_categories')->get();
 
                             <td>
                                 <a href="{{ url('authorize/product-restore/'.$item->id) }}" class="btn btn-info" title="Restore from trash"><span class="glyphicon glyphicon-refresh"></span></a>
-                                <a href="{{ url('authorize/force-delete/'.$item->id) }}" class="btn btn-warning" onclick="return check_delete();" title="Permanently Delete"><span class="glyphicon glyphicon-off"></span></a>
+                                <a href="{{ url('authorize/force-delete/'.$item->id) }}" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete permanent...!')" title="Permanently Delete"><span class="glyphicon glyphicon-off"></span></a>
                             </td>
                         </tr>
                     @endforeach

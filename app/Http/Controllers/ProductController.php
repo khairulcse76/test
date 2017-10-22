@@ -21,11 +21,6 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function product_update(Request $request, $id)
     {
         $this->validate($request,[
@@ -357,7 +352,7 @@ class ProductController extends Controller
     }
 
     public function product_delete($id){
-        $item=Product::destroy($id);
+        $item=Product::find($id)->delete();
 
         if ($item){
             session()->flash('warning', 'Product Successfully Deleted.....');
@@ -371,19 +366,13 @@ class ProductController extends Controller
     }
     public function restore($id){
         Product::onlyTrashed()->where('id', $id)->restore();
-
         return back();
     }
     public function force_delete($id){
-       $delete= Product::onlyTrashed()
+        $delete=Product::onlyTrashed()
             ->where('id', $id)
-            ->get();
-        $delete->forceDelete();
+            ->forceDelete();
         return back();
-    }
-    public function forceDelete()
-    {
-        return $this->query->delete();
     }
 
     private function file_delete($file){
