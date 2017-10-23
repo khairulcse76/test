@@ -152,6 +152,9 @@
                             <option value="{{ $color->id }}">{{ $color->colorName }}</option>
                                 @endforeach
                         </select>
+                        @if($errors->has('colorId'))
+                            <span style="color:red;">{{ $errors->first('colorId') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="form-group">

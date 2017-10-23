@@ -52,15 +52,18 @@
                     <h2>{{ $product->productName }}</h2>
                     <p>Model No: {{ $product->modelNo }}</p>
                     <img src="{{ asset('images/product-details/rating.png') }}" alt="" />
-                    <span>
-                        <span>BDT ৳{{ $product->productPrice }}.00</span>
-                        <label>Quantity:</label>
-                        <input type="text" value="" />
-                        <button type="button" class="btn btn-fefault cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        Add to cart
-                        </button>
-					</span>
+                        <div>
+                            <span>
+                            <span>BDT ৳{{ $product->productPrice }}.00</span><br>
+                            <label>Quantity:</label>
+                            <form action="{{ url('/add-to-cart') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="text" name="qty" value="{{ $product->minQuantity }}" />
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                            </form>
+                                </span>
+                        </div>
                     <p><b>Availability:</b> @if($product->availability == 0) <span style="color: red;">Out of Stock</span> @else <span style="color: blue;">In Stock</span> @endif</p>
                     <p><b>Condition:</b> {{ $product->condition }}</p>
                     <p><b>Brand:</b> {{ $product->brandName }}</p>

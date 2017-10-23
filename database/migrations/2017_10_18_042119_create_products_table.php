@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->string('productFile1')->nullable();
             $table->string('productFile2')->nullable();
             $table->string('productFile3')->nullable();
+            $table->string('top_product')->defaulst(0);
             $table->softDeletes();
             $table->timestamps();
         });

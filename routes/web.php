@@ -8,7 +8,8 @@ Route::get('/image', function () {
 });
 Route::get('/user-product-details/{id}', 'ProductController@productDetails');
 Route::get('/checkout/', 'FrontendController@checkout');
-Route::get('/cart/', 'FrontendController@cart');
+Route::get('/show-cart/', 'CartController@show_cart');
+Route::post('/add-to-cart/', 'CartController@add_to_cart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -32,6 +33,8 @@ Route::group([
         Route::get('/product-trash', 'ProductController@trash');
         Route::get('/product-restore/{id}', 'ProductController@restore');
         Route::get('/force-delete/{id}', 'ProductController@force_delete');
+        Route::get('/add-top/{id}', 'ProductController@add_top');
+        Route::get('/remove-top/{id}', 'ProductController@remove_to_top');
 
         //Category Routes
         Route::get('/insert-category', 'CategoryController@create');
