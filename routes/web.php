@@ -10,6 +10,9 @@ Route::get('/user-product-details/{id}', 'ProductController@productDetails');
 Route::get('/checkout/', 'FrontendController@checkout');
 Route::get('/show-cart/', 'CartController@show_cart');
 Route::post('/add-to-cart/', 'CartController@add_to_cart');
+Route::get('/remove-to-cart/{id}', 'CartController@remove_to_cart');
+Route::get('/increment/{id}', 'CartController@increment');
+Route::get('/decrement/{id}', 'CartController@decrement');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

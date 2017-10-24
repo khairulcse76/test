@@ -108,7 +108,7 @@ $subCategories=SubCategory::all();
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{ url('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @if (Route::has('login'))
                                     @auth
                                     <a  href="{{ route('logout') }}" class="btn btn-default btn-flat"

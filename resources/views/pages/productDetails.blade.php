@@ -7,6 +7,16 @@
     @include('includs.sidebar')
 @endsection
 @section('main_content')
+
+    @if(session('massage'))
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="alert alert-success" style="font-size: large; padding: 2px; color: red;"><center>{{ session('massage') }}</center></div>
+            </div>
+        </div><hr>
+    @endif
+
     <div class="col-sm-9 padding-right">
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
@@ -54,15 +64,15 @@
                     <img src="{{ asset('images/product-details/rating.png') }}" alt="" />
                         <div>
                             <span>
-                            <span>BDT ৳{{ $product->productPrice }}.00</span><br>
-                            <label>Quantity:</label>
-                            <form action="{{ url('/add-to-cart') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="text" name="qty" value="{{ $product->minQuantity }}" />
-                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                                <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                            </form>
-                                </span>
+                                <span>BDT ৳{{ $product->productPrice }}.00</span><br>
+                                <label>Quantity:</label>
+                                <form action="{{ url('/add-to-cart') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="text" name="qty" value="{{ $product->minQuantity }}" />
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                    <button type="submit" class="btn btn-fefault cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                </form>
+                            </span>
                         </div>
                     <p><b>Availability:</b> @if($product->availability == 0) <span style="color: red;">Out of Stock</span> @else <span style="color: blue;">In Stock</span> @endif</p>
                     <p><b>Condition:</b> {{ $product->condition }}</p>
